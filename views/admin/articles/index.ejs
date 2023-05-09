@@ -1,0 +1,66 @@
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/navbar.ejs') %>
+
+<div class="container">
+  <br />
+  <div class="card shadow-sm p-3 mb-5 bg-body-tertiary roundeds">
+    <div class="card-header shadow-none p-3 bg-body-tertiary rounded">
+      <h2 style="display: inline">Artigos</h2>
+      <a class="btn btn-success" href="/admin/articles/new" style="margin-left: 71%;"
+        >Criar novo Artigo</a
+      >
+    </div>
+    <br />
+    <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Slug</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(article => { %>
+                <tr>
+                  <th><%= article.id %></th>
+                  <td><%= article.title %></td>
+                  <td><%= article.slug %></td>
+                  <td><%= article.category.title %></td>
+                  <td>
+                     <a class="btn btn" href="/admin/article/edit/<%= article.id %>">
+                      <img src="/icons/pencil-fill.svg" title="Editar" />
+                     </a>
+                     <form
+                      method="post"
+                      action="/articles/delete"
+                      style="display: inline"
+                      onsubmit="confirmDelete(event, this)"
+                     >
+                      <input type="hidden" name="id" value="<%= article.id %>" />
+                      <button class="btn btn">
+                        <img src="/icons/trash3-fill.svg" title="Deletar" />
+                      </button>
+                     </form>
+                  </td>
+                </tr>
+                <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %>
+
+<script>
+  function confirmDelete(event, form) {
+    event.preventDefault();
+    const decision = confirm("Deseja realmente deletar esta categoria?");
+    if (decision) {
+      form.submit();
+    }
+  }
+</script>

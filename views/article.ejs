@@ -1,0 +1,45 @@
+<%- include('partials/header.ejs') %> <%- include('./partials/homeNavbar.ejs')%>
+
+<body>
+  <div class="container">
+    <br />
+    <div class="card border border-0">
+      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="d-flex justify-content-center">
+          <h2><%= article.title %></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border border-0">
+      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn mb-n4">
+            <img
+              src="/icons/meta.svg"
+              height="20"
+              title="Compartilhar por apps meta"
+            />
+          </button>
+          <button class="btn btn mb-n4">
+            <img
+              src="/icons/facebook.svg"
+              height="20"
+              title="Campartilhar no facebook"
+            />
+          </button>
+          <button class="btn btn mb-n4">
+            <img
+              src="/icons/whats.svg"
+              height="20"
+              title="Compartilhar no WhatsApp"
+            />
+          </button>
+        </div>
+        <%- article.body %>
+      </div>
+    </div>
+  </div>
+</body>
+
+<%- include('partials/footer.ejs') %>

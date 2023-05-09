@@ -1,0 +1,79 @@
+<%- include('partials/header.ejs') %> <%- include('./partials/homeNavbar.ejs')
+%>
+
+<body>
+  <div class="container">
+    <br />
+    <div class="card border border-0">
+      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="d-flex justify-content-between">
+          <div></div>
+          <h3>Artigos Diversos</h3>
+          <button class="btn btn" id="abrirFilter">
+            <img
+              src="/icons/filter.svg"
+              height="30"
+              title="Filtrar por Categoria"
+            />
+          </button>
+        </div>
+        <div id="selectFilter" class="select-escondido">
+          <select>
+            <option value="opcao1">Opção 1</option>
+            <option value="opcao2">Opção 2</option>
+            <option value="opcao3">Opção 3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <% articles.forEach(article => { %>
+    <div class="card border border-0">
+      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="card-header shadow-none p-3 bg-body-tertiary rounded">
+          <h2><%= article.title %></h2>
+        </div>
+        <br />
+        <a href="/<%= article.slug %>" class="btn btn-success">Ler Artigo</a>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</body>
+
+<%- include('partials/footer.ejs') %>
+
+<script>
+  var botaoAbrir = document.getElementById("abrirFilter");
+  var select = document.querySelector(".select-escondido");
+
+  botaoAbrir.addEventListener("click", function () {
+    select.classList.toggle("select-escondido");
+  });
+</script>
+
+<style>
+  #selectFilter select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 5%;
+    height: 40px;
+    padding: 10px;
+    margin-top: -46px;
+    position: relative;
+    float: right;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+  }
+
+  .select-escondido {
+    display: none;
+  }
+</style>
