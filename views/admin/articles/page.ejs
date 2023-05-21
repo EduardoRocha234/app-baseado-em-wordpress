@@ -1,10 +1,9 @@
-<%- include('partials/header.ejs') %> <%- include('./partials/homeNavbar.ejs')
-%>
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/homeNavbar.ejs') %>
 
 <body>
   <div class="container">
     <br />
-
     <div
       id="selectFilter"
       class="card shadow p-0 mb-5 bg-body-tertiary rounded select-escondido"
@@ -27,11 +26,10 @@
     </div>
 
     <div class="card border border-0">
-      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded ">
+      <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
         <div id="titulo" class="">
           <div></div>
           <h3>Artigos Diversos</h3>
-
           <button class="btn btn" id="abrirFilter">
             <img
               src="/icons/filter.svg"
@@ -43,7 +41,8 @@
       </div>
     </div>
 
-    <%if(articles.length > 0) {%> <% articles.forEach(article => { %>
+    <%if(result.articles.rows.length > 0) {%> <%
+    result.articles.rows.forEach(article => { %>
     <div class="card border border-0">
       <div class="card-body shadow p-3 mb-5 bg-body-tertiary rounded">
         <div class="card-header shadow-none p-3 bg-body-tertiary rounded">
@@ -65,20 +64,27 @@
 
     <div class="row">
       <div class="col col-12">
-          <a style="float: right;" href="/articles/page/1">Next >></a>
+        <%if(result.page > 2) { %>
+            <a href="/articles/page/<%= result.page - 1 %>"><< Prev</a>
+        <%} else if(result.page == 2) { %>
+            <a href="/"><< Prev</a>
+        <% } %>
+        
+        <% if(result.next) { %>
+            <a style="float: right" href="/articles/page/<%= result.page + 1 %>">Next >></a>
+        <% }%>
       </div>
-  </div>
-  <hr>
-
+    </div>
+    <hr />
   </div>
 </body>
 
-<%- include('partials/footer.ejs') %>
+<%- include('../../partials/footer.ejs') %>
 
 <script>
   var botaoAbrir = document.getElementById("abrirFilter");
   var select = document.getElementById("selectFilter");
-  var titulo = document.getElementById("titulo")
+  var titulo = document.getElementById("titulo");
 
   botaoAbrir.addEventListener("click", () => {
     select.classList.toggle("select-escondido");
@@ -89,12 +95,12 @@
     const largura = window.screen.width;
     // 608 x 1075 dimensão da tela do notebook
     console.log(largura);
-    if(largura <= 1366) {
+    if (largura <= 1366) {
       select.classList.toggle("select-escondido");
       botaoAbrir.classList.toggle("select-escondido");
-      titulo.classList.toggle("tituloCentralizado")
+      titulo.classList.toggle("tituloCentralizado");
     } else {
-      titulo.classList.toggle("tituloCentralizadoComBotao")
+      titulo.classList.toggle("tituloCentralizadoComBotao");
       var rota = window.location.pathname.substring(1);
       const id = rota.slice(9);
       const el = document.getElementById(id);
