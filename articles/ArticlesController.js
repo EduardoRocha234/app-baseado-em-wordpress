@@ -99,7 +99,7 @@ router.post("/articles/update", (req, res) => {
   }
 });
 
-router.get("/articles/page/:num", adminAuth,(req, res) => {
+router.get("/articles/page/:num",(req, res) => {
   const page = req.params.num;
   let offset = 0; //* define de onde irá começar a contagem
 
