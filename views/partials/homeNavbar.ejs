@@ -6,11 +6,12 @@
       <a class="nav-link" href="/">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/admin/articles">admin</a>
+      <a class="nav-link" href="/login">Logar</a>
     </li>
   </ul>
 
-  <ul  id="category" class="navbar-nav" style="margin-right: 10px">
+
+  <!-- <ul  id="category" class="navbar-nav" style="margin-right: 10px">
     <% categories.forEach(category => { %>
     <li class="nav-item">
       <a class="nav-link" href="/category/<%= category.slug %>"
@@ -18,25 +19,5 @@
       >
     </li>
     <% })%>
-  </ul>
+  </ul> -->
 </nav>
-
-<script>
-  var categoryLink = document.getElementById("category");
-  document.addEventListener("DOMContentLoaded", () => {
-    const largura = window.screen.width;
-    console.log(largura);
-    // 608 x 1366 dimensão da tela do notebook
-    if (largura >= 1920) {
-      categoryLink.classList.toggle("link-escondido");
-    } else {
-      categoryLink.classList.remove("link-escondido");
-    }
-  });
-</script>
-
-<style>
-  .link-escondido {
-    display: none;
-  }
-</style>

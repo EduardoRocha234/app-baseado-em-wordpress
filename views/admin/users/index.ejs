@@ -5,9 +5,9 @@ include('../../partials/navbar.ejs') %>
   <br />
   <div class="card shadow-sm p-3 mb-5 bg-body-tertiary roundeds">
     <div class="card-header shadow-none p-3 bg-body-tertiary rounded">
-      <h2 style="display: inline">Artigos</h2>
-      <a class="btn btn-success" href="/admin/articles/new"  style="float: right;"
-        >Criar novo Artigo</a
+      <h2 style="display: inline">Usuários</h2>
+      <a class="btn btn-success" href="/admin/users/create" style="float: right;"
+        >Registrar novo usuário</a
       >
     </div>
     <br />
@@ -16,30 +16,26 @@ include('../../partials/navbar.ejs') %>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Título</th>
-            <th>Slug</th>
-            <th>Categoria</th>
-            <th>Ações</th>
+            <th>email</th>
+            <th>AÇÕES</th>
           </tr>
         </thead>
         <tbody>
-            <% articles.forEach(article => { %>
+            <% users.forEach(user => { %>
                 <tr>
-                  <th><%= article.id %></th>
-                  <td><%= article.title %></td>
-                  <td><%= article.slug %></td>
-                  <td><%= article.category.title %></td>
+                  <th><%= user.id %></th>
+                  <td><%= user.email %></td>
                   <td>
-                     <a class="btn btn" href="/admin/articles/edit/<%= article.id %>">
+                     <a class="btn btn" href="/admin/user/edit/<%= user.id %>">
                       <img src="/icons/pencil-fill.svg" title="Editar" />
                      </a>
                      <form
                       method="post"
-                      action="/articles/delete"
+                      action="/user/delete"
                       style="display: inline"
                       onsubmit="confirmDelete(event, this)"
                      >
-                      <input type="hidden" name="id" value="<%= article.id %>" />
+                      <input type="hidden" name="id" value="<%= user.id %>" />
                       <button class="btn btn">
                         <img src="/icons/trash3-fill.svg" title="Deletar" />
                       </button>

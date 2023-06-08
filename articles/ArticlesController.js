@@ -3,8 +3,9 @@ const router = express.Router();
 const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugfy = require("slugify");
+const adminAuth = require("../middlewares/adminAuth");
 
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles", adminAuth, (req, res) => {
   Article.findAll({
     include: [{model: Category}], //? Faz o relacionamento com a tebela de categorias, ou seja, desntro dos dados da categoria, vai estar incluso os dados do artigo
   }).then((articles) => {
@@ -12,7 +13,7 @@ router.get("/admin/articles", (req, res) => {
   });
 });
 
-router.get("/admin/articles/new", (req, res) => {
+router.get("/admin/articles/new", adminAuth, (req, res) => {
   Category.findAll().then((categories) => {
     res.render("admin/articles/new", {categories: categories});
   });
@@ -48,7 +49,7 @@ router.post("/articles/save", (req, res) => {
   });
 });
 
-router.get("/admin/articles/edit/:id", (req, res) => {
+router.get("/admin/articles/edit/:id", adminAuth, (req, res) => {
   const id = req.params.id;
 
   if (!isNaN(id)) {
@@ -98,7 +99,7 @@ router.post("/articles/update", (req, res) => {
   }
 });
 
-router.get("/articles/page/:num", (req, res) => {
+router.get("/articles/page/:num", adminAuth,(req, res) => {
   const page = req.params.num;
   let offset = 0; //* define de onde irá começar a contagem
 

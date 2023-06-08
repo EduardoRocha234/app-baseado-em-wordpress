@@ -4,18 +4,19 @@
 <div class="container">
     <div class="card mt-5">  
         <div class="card-header">
-            Criação de Usuário
+            Alterar Dados de Usuário
         </div>
         <div class="card-body">
-            <form action="/users/create" method="post" onsubmit="comparar(event, this)">
-                <label>Usuário*</label>
-                <input type="email" class="form-control" name="email" placeholder="exemplo@gmail.com">
+            <form action="/user/update" method="post"  onsubmit="comparar(event, this)">
+                <input type="hidden" name="id" value="<%= user.id %>">
+                <label>Email*</label>
+                <input type="email" class="form-control" name="email" placeholder="exemplo@gmail.com" value="<%= user.email %>">
                 <label>Senha*</label>
-                <input id="senha"  type="password" class="form-control" name="password" placeholder="senha">
-                <label>Confirmar Senha</label>
+                <input id="senha" type="password" class="form-control" name="password" placeholder="nova senha">
+                <br>
                 <input id="senhaConfirmacao" type="password" class="form-control" placeholder="repita a senha">
                 <br>
-                <button type="submit" class="btn btn-success btn-block">Registrar</button>
+                <button type="submit" class="btn btn-success btn-block" >Alterar</button>
             </form>
             
         </div>
@@ -35,7 +36,6 @@
         }
     }
 </script>
-
 
 <%- include('../../partials/footer.ejs') %>
 
